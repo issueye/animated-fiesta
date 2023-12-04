@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/components/user/github_user.dart';
 import 'package:flutter_template/controller/todo.dart';
+import 'package:flutter_template/i18n/translations.dart';
 import 'package:flutter_template/pages/settings.dart';
 import 'package:flutter_template/pages/todo_list.dart';
 import 'package:get/get.dart';
@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     TodoController controller = Get.find();
     return Scaffold(
       appBar: AppBar(
-        title: Text('appTitle'.tr),
+        title: Text(MyTranslations.app_title.tr),
         actions: [
           PopupMenuButton<String>(
             onSelected: (value) {
@@ -27,23 +27,24 @@ class HomePage extends StatelessWidget {
               }
             },
             itemBuilder: (BuildContext context) => <PopupMenuEntry<String>>[
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'all',
-                child: Text('All'),
+                child: Text('all'.tr),
               ),
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'completed',
-                child: Text('Completed'),
+                child: Text('completed'.tr),
               ),
-              const PopupMenuItem<String>(
+              PopupMenuItem<String>(
                 value: 'incomplete',
-                child: Text('Incomplete'),
+                child: Text('incomplete'.tr),
               ),
             ],
           ),
         ],
       ),
       drawer: Drawer(
+        width: 200,
         elevation: 8,
         child: SafeArea(
           child: Container(
@@ -54,14 +55,14 @@ class HomePage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'appTitle'.tr,
+                      MyTranslations.app_title.tr,
                       style: const TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 16),
-                    const GithubUserInfoWidget(),
+                    // const GithubUserInfoWidget(),
                   ],
                 ),
                 Divider(
@@ -73,21 +74,21 @@ class HomePage extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     children: [
                       ListTile(
-                        title: Text('Home'.tr),
+                        title: Text('home'.tr),
                         leading: const Icon(Icons.list),
                         onTap: () {
                           Get.back();
                         },
                       ),
                       ListTile(
-                        title: Text('Settings'.tr),
+                        title: Text('settings'.tr),
                         leading: const Icon(Icons.settings),
                         onTap: () {
                           Get.to(SettingPage());
                         },
                       ),
                       ListTile(
-                        title: Text('Help'.tr),
+                        title: Text('help'.tr),
                         leading: const Icon(Icons.help),
                         onTap: () {
                           // Add your help page navigation logic here
@@ -99,9 +100,9 @@ class HomePage extends StatelessWidget {
                 Container(
                   padding:
                       const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
-                  child: const Text(
-                    'App Version 1.1.0',
-                    style: TextStyle(
+                  child: Text(
+                    'appVersion'.tr,
+                    style: const TextStyle(
                       fontSize: 14,
                     ),
                   ),

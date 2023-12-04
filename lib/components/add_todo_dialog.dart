@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/controller/todo.dart';
+import 'package:flutter_template/i18n/translations.dart';
 import 'package:flutter_template/models/todo.dart';
 import 'package:flutter_material_pickers/flutter_material_pickers.dart';
 import 'package:get/get.dart';
@@ -15,10 +16,16 @@ class AddTodoDialog extends StatefulWidget {
 class _AddTodoDialogState extends State<AddTodoDialog> {
   final TextEditingController _titleController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  String _selectedType = 'default';
+  String _selectedType = MyTranslations.todo_type_default.tr;
 
   @override
   Widget build(BuildContext context) {
+    List<String> pickType = <String>[
+      MyTranslations.todo_type_default.tr,
+      MyTranslations.todo_type_work.tr,
+      MyTranslations.todo_type_personal.tr,
+    ];
+
     return AlertDialog(
       content: Form(
         key: _formKey,
@@ -27,8 +34,8 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
           children: [
             TextFormField(
               controller: _titleController,
-              decoration: const InputDecoration(
-                labelText: 'Title',
+              decoration: InputDecoration(
+                labelText: MyTranslations.todo_edit_title.tr,
               ),
               validator: (value) {
                 if (value == null || value.isEmpty) {
@@ -38,12 +45,14 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
               },
             ),
             ListTile(
-              title: Text('Type: $_selectedType'),
+              title: Text('${MyTranslations.todo_type}: $_selectedType'),
               onTap: () {
                 showMaterialScrollPicker(
                   context: context,
-                  title: "Pick a type",
-                  items: <String>['default', 'work', 'personal'],
+                  title: MyTranslations.settings_pick_a_type.tr,
+                  items: pickType,
+                  cancelText: MyTranslations.todo_button_cancel.tr,
+                  confirmText: MyTranslations.todo_button_ok.tr,
                   selectedItem: _selectedType,
                   onChanged: (value) {
                     setState(() {
@@ -61,7 +70,7 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: const Text('Cancel'),
+          child: Text(MyTranslations.todo_button_cancel.tr),
         ),
         TextButton(
           onPressed: () {
@@ -77,7 +86,7 @@ class _AddTodoDialogState extends State<AddTodoDialog> {
               Navigator.of(context).pop();
             }
           },
-          child: const Text('Add'),
+          child: Text(MyTranslations.todo_button_add.tr),
         ),
       ],
     );

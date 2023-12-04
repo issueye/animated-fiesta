@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/controller/settings.dart';
+import 'package:flutter_template/i18n/translations.dart';
 import 'package:get/get.dart';
 
 class SettingPage extends GetResponsiveView<SettingsController> {
@@ -8,7 +9,7 @@ class SettingPage extends GetResponsiveView<SettingsController> {
   Widget? builder() {
     return Scaffold(
       appBar: AppBar(
-        title: Text('settings'.tr),
+        title: Text(MyTranslations.settings.tr),
       ),
       body: GetX<SettingsController>(builder: (controller) {
         return ListView(
@@ -16,8 +17,10 @@ class SettingPage extends GetResponsiveView<SettingsController> {
             const Divider(),
             ListTile(
               dense: true,
-              title: Text('theme'.tr,
-                  style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(
+                MyTranslations.settings_theme.tr,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              ),
             ),
             RadioListTile(
               title: const Text('跟随系统'),
@@ -46,7 +49,7 @@ class SettingPage extends GetResponsiveView<SettingsController> {
             const Divider(),
             ListTile(
               dense: true,
-              title: Text('language'.tr,
+              title: Text(MyTranslations.settings_language.tr,
                   style: const TextStyle(fontWeight: FontWeight.bold)),
             ),
             RadioListTile(

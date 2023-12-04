@@ -3,6 +3,7 @@ import 'package:flutter_material_pickers/helpers/show_responsive_dialog.dart';
 import 'package:flutter_template/components/add_todo_dialog.dart';
 import 'package:flutter_template/components/todo_item.dart';
 import 'package:flutter_template/controller/todo.dart';
+import 'package:flutter_template/i18n/translations.dart';
 import 'package:get/get.dart';
 
 class TodoListPage extends GetView<TodoController> {
@@ -18,8 +19,7 @@ class TodoListPage extends GetView<TodoController> {
               () => controller.todos.isEmpty
                   ? Center(
                       child: Text(
-                        'No tasks available. \n Click the button below to add one.'
-                            .tr,
+                        MyTranslations.todo_no_data.tr,
                         textAlign: TextAlign.center,
                       ),
                     )
@@ -38,10 +38,12 @@ class TodoListPage extends GetView<TodoController> {
         child: const Icon(Icons.add),
         onPressed: () {
           showMaterialResponsiveDialog(
-              title: "Add todo".tr,
-              child: const AddTodoDialog(),
-              context: context,
-              hideButtons: true);
+            headerColor: Colors.black26,
+            title: MyTranslations.todo_add_title.tr,
+            child: const AddTodoDialog(),
+            context: context,
+            hideButtons: true,
+          );
         },
       ),
     );

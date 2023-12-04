@@ -20,18 +20,19 @@ class Markdown extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: MarkdownGenerator(
-              inlineSyntaxes: [LatexSyntax()],
+              inlineSyntaxList: [LatexSyntax()],
               generators: [latexGenerator],
-              config: config.copy(configs: [
-                isDark
-                    ? PreConfig.darkConfig.copy(wrapper: codeWrapper)
-                    : const PreConfig().copy(wrapper: codeWrapper),
-                TableConfig(
-                    wrapper: (table) => SingleChildScrollView(
-                          scrollDirection: Axis.horizontal,
-                          child: table,
-                        )),
-              ]),
+              // config: config.copy(configs: [
+              //   isDark
+              //       ? PreConfig.darkConfig.copy(wrapper: codeWrapper)
+              //       : const PreConfig().copy(wrapper: codeWrapper),
+              //   TableConfig(
+              //     wrapper: (table) => SingleChildScrollView(
+              //       scrollDirection: Axis.horizontal,
+              //       child: table,
+              //     ),
+              //   ),
+              // ]),
             ).buildWidgets(text)),
       ),
     );

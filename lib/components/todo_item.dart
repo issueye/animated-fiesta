@@ -47,6 +47,7 @@ class TodoItem extends StatelessWidget {
         child: const Icon(Icons.delete, color: Colors.white),
       ),
       child: Card(
+        margin: const EdgeInsets.only(left: 10, right: 10, bottom: 10),
         elevation: 16,
         child: ListTile(
           leading: Container(
